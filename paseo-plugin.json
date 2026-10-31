@@ -1,0 +1,6 @@
+{
+  "id": "open-with-paseo",
+  "name": "Open with Paseo",
+  "description": "Adds \"Open with Paseo\" to the Windows Explorer folder context menu: opens the folder as a workspace, with a new chat when it is already one",
+  "requirements": { "paseo": ">=0.13.0" }
+}
