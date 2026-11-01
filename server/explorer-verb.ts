@@ -90,3 +90,14 @@ export async function registerExplorerVerb(options: ExplorerVerbOptions): Promis
     await reg(["add", `${key}\\command`, "/ve", "/d", command, "/f"]);
   }
 }
+
+/** Deletes both per-user Explorer verbs; a verb that is already gone is fine */
+export async function unregisterExplorerVerb(): Promise<void> {
+  for (const key of VERB_KEYS) {
+    try {
+      await reg(["delete", key, "/f"]);
+    } catch {
+      // reg.exe exits 1 when the key does not exist
+    }
+  }
+}

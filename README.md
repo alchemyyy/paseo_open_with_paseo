@@ -4,18 +4,19 @@ Paseo plugin that adds "Open with Paseo" to the Windows Explorer folder context 
 
 ## Install
 
-1. Install [Paseo](https://paseo.sh) 0.13.0 or later, launch it once, and turn on Settings > Plugins > Enable plugins.
-2. Run the install script from this folder:
+Requires [Paseo](https://paseo.sh) 0.13.0 or later on Windows with plugins turned on (Settings > Plugins > Enable plugins).
 
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File install.ps1
-   ```
+```sh
+paseo plugin install https://github.com/alchemyyy/paseo_open_with_paseo
+```
 
-   It runs `paseo plugin install <this folder>`, or `paseo plugin reload open-with-paseo` if the plugin is already installed. It warns if `pluginsEnabled` is off in `~/.paseo/config.json`. Run it again to reload the plugin after editing it.
+Loading the plugin registers the Explorer menu entry. `paseo plugin update open-with-paseo` updates the plugin; the [Plugin manager](https://github.com/alchemyyy/paseo_plugin_manager) plugin checks and updates installed plugins from the sidebar.
 
-`-PaseoCli <path>` points to `paseo.cmd` if it is not on `PATH` or in the default install folders (`%ProgramFiles%\Paseo` or `%LOCALAPPDATA%\Programs\Paseo`).
+`paseo plugin remove open-with-paseo` uninstalls it: as the plugin stops, it deletes both Explorer registry keys and its `open-with-paseo` data folder under `PASEO_HOME` (default `~/.paseo`). Disabling the plugin, or all plugins, deletes the registry keys until it runs again. A plugin removed while disabled runs no code, so its data folder stays; delete it by hand.
 
-To uninstall, run `powershell -ExecutionPolicy Bypass -File uninstall.ps1` (also accepts `-PaseoCli`). It removes the plugin first, because a loaded plugin re-registers the menu entry. Then it deletes both Explorer registry keys and the `open-with-paseo` data folder under `PASEO_HOME` (default `~/.paseo`).
+The `paseo` command comes with the desktop app: Settings > Integrations > Command line puts it on `PATH`, or run `paseo.cmd` from the app's `resources\bin` folder.
+
+To work on the plugin, clone this repository and install the folder instead (`paseo plugin install <folder>`), then run `paseo plugin reload open-with-paseo` after editing it.
 
 ## Features
 
